@@ -1,7 +1,9 @@
-name "maps_typekit"
+name "maps"
 version "0.1"
 
 using_library 'maps'
+
+import_types_from "maps/grid/MLSConfig.hpp"
 
 # define opaques
 typekit do
@@ -77,5 +79,40 @@ maps = ['/maps/grid/GridMap</char>',
 # type exports
 typekit do
     export_types *maps
+end
+
+# Abstract map laoder for MLS maps.
+task_context "MLSMapLoader" do
+
+    property('path', 'std/string')
+    .doc("File location of the PLY to load.")
+
+    property('resolution', 'double', 0.1)
+    .doc("Cell size of the generated MLS map.")
+
+    property('mls_config', 'maps/grid/MLSConfig')
+    .doc("Parameters of the generated MLS map.")
+
+    operation('publishMap')
+   	.returns("bool")
+    .doc("Writes the map to the port.")
+
+    periodic(1.0)
+end
+
+# Loads a pointcloud from a ply file and generates a MLS<KALMAN> from it.
+task_context "MLSMapKalmanLoader" do
+    subclasses "MLSMapLoader"
+    
+    output_port('map', '/maps/grid/MLSMap</maps/grid/MLSConfig/KALMAN>')
+    .doc("Generated MLS map, request via publishMap operation.")
+end
+
+# Loads a pointcloud from a ply file and generates a MLS<SLOPE> from it.
+task_context "MLSMapSlopeLoader" do
+    subclasses "MLSMapLoader"
+    
+    output_port('map', '/maps/grid/MLSMap</maps/grid/MLSConfig/SLOPE>')
+    .doc("Generated MLS map, request via publishMap operation.")
 end
 

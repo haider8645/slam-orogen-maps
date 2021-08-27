@@ -3,6 +3,7 @@ templates/*
 *~
 .*.swp
 build/*
-
+tasks/CMakeLists.txt
 *autobuild-stamp
+Doxyfile.in
 
