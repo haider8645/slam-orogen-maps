@@ -1,0 +1,81 @@
+name "maps_typekit"
+version "0.1"
+
+using_library 'maps'
+
+# define opaques
+typekit do
+
+    opaque_autogen '/maps/grid/GridMap</char>',
+                    :includes => "maps/grid/GridMap.hpp",
+                    :alias_name => '/maps/grid/GridMapC'
+
+    opaque_autogen '/maps/grid/GridMap</int>',
+                    :includes => "maps/grid/GridMap.hpp",
+                    :alias_name => '/maps/grid/GridMapI'
+                    
+    opaque_autogen '/maps/grid/GridMap</float>',
+                    :includes => "maps/grid/GridMap.hpp",
+                    :alias_name => '/maps/grid/GridMapF'
+
+    opaque_autogen '/maps/grid/GridMap</double>',
+                    :includes => "maps/grid/GridMap.hpp",
+                    :alias_name => '/maps/grid/GridMapD'
+
+    opaque_autogen '/maps/grid/ElevationMap',
+                    :includes => "maps/grid/ElevationMap.hpp"
+         
+    opaque_autogen '/maps/grid/MLSMap</maps/grid/MLSConfig/SLOPE>',
+                    :includes => "maps/grid/MLSMap.hpp",
+                    :alias_name => '/maps/grid/MLSMapSloped'
+
+    opaque_autogen '/maps/grid/MLSMap</maps/grid/MLSConfig/KALMAN>',
+                    :includes => "maps/grid/MLSMap.hpp",
+                    :alias_name => '/maps/grid/MLSMapKalman'
+
+    opaque_autogen '/maps/grid/MLSMap</maps/grid/MLSConfig/BASE>',
+                    :includes => "maps/grid/MLSMap.hpp",
+                    :alias_name => '/maps/grid/MLSMapBase'
+
+    opaque_autogen '/maps/grid/MLSMap</maps/grid/MLSConfig/PRECALCULATED>',
+                    :includes => "maps/grid/MLSMap.hpp",
+                    :alias_name => '/maps/grid/MLSMapPrecalculated'
+
+    opaque_autogen '/maps/geometric/GeometricMap</maps/geometric/LineSegment3d>',
+                    :includes => "maps/geometric/ContourMap.hpp",
+                    :alias_name => '/maps/geometric/ContourMap'
+
+    opaque_autogen '/maps/grid/OccupancyGridMap',
+                    :includes => "maps/grid/OccupancyGridMap.hpp"
+
+    opaque_autogen '/maps/grid/TraversabilityGrid',
+                    :includes => "maps/grid/TraversabilityGrid.hpp"
+
+    opaque_autogen '/maps/grid/TSDFVolumetricMap',
+                    :includes => "maps/grid/TSDFVolumetricMap.hpp"
+
+    opaque_autogen '/maps/grid/TraversabilityMap3d</maps/grid/TraversabilityNodeBase *>',
+                    :includes => "maps/grid/TraversabilityMap3d.hpp",
+                    :alias_name => '/maps/grid/TraversabilityBaseMap3d'
+end
+
+maps = ['/maps/grid/GridMap</char>',
+        '/maps/grid/GridMap</int>',
+        '/maps/grid/GridMap</float>',
+        '/maps/grid/GridMap</double>',
+        '/maps/grid/ElevationMap',
+        '/maps/grid/MLSMap</maps/grid/MLSConfig/BASE>',
+        '/maps/grid/MLSMap</maps/grid/MLSConfig/SLOPE>',
+        '/maps/grid/MLSMap</maps/grid/MLSConfig/KALMAN>',
+        '/maps/grid/MLSMap</maps/grid/MLSConfig/PRECALCULATED>',
+        '/maps/geometric/GeometricMap</maps/geometric/LineSegment3d>',
+        '/maps/grid/OccupancyGridMap',
+        '/maps/grid/TraversabilityGrid',
+        '/maps/grid/TSDFVolumetricMap',
+        '/maps/grid/TraversabilityBaseMap3d']
+
+# type exports
+typekit do
+    export_types *maps
+end
+

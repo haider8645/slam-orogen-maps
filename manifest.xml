@@ -1,0 +1,13 @@
+<package>
+    <description brief="Typekit export of Standard maps">
+       Wrapper for the export and usage of standard map library inside orogen tasks.
+    </description>
+
+    <author>Javier Hidalgo Carrio</author>
+    <maintainer email="sebastian.kasperski@dfki.de">Sebastian Kasperski</maintainer>
+    <license>BSD</license>
+
+    <depend package="slam/maps" />
+    <depend package="slam/opaque_autogen" />
+</package>
+
