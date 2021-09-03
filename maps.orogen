@@ -101,17 +101,13 @@ task_context "MLSMapLoader" do
 end
 
 # Loads a pointcloud from a ply file and generates a MLS<KALMAN> from it.
-task_context "MLSMapKalmanLoader" do
-    subclasses "MLSMapLoader"
-    
+task_context "MLSMapKalmanLoader", subclasses: "MLSMapLoader" do    
     output_port('map', '/maps/grid/MLSMap</maps/grid/MLSConfig/KALMAN>')
     .doc("Generated MLS map, request via publishMap operation.")
 end
 
 # Loads a pointcloud from a ply file and generates a MLS<SLOPE> from it.
-task_context "MLSMapSlopeLoader" do
-    subclasses "MLSMapLoader"
-    
+task_context "MLSMapSlopeLoader", subclasses: "MLSMapLoader" do
     output_port('map', '/maps/grid/MLSMap</maps/grid/MLSConfig/SLOPE>')
     .doc("Generated MLS map, request via publishMap operation.")
 end
