@@ -31,6 +31,7 @@ bool MLSMapLoader::publishMap()
 {
     if(mMapLoaded)
     {
+        _cloud.write(mPointcloud);
         writeMLS();
         return true;
     }else
@@ -45,16 +46,29 @@ bool MLSMapLoader::configureHook()
     if (! MLSMapLoaderBase::configureHook())
         return false;
 
-    pcl::PointCloud<pcl::PointXYZ> cloud;
+    pcl::PointCloud<pcl::PointXYZ> pcl_cloud;
     pcl::PLYReader plyReader;
-    if (plyReader.read(_path, cloud) < 0)
+    if (plyReader.read(_path, pcl_cloud) < 0)
     {
         std::cerr << "Loading PLY failed!" << std::endl;
         return false;
     }
 
+    // Convert to base-type
+    mPointcloud.time.fromMicroseconds(pcl_cloud.header.stamp);
+    mPointcloud.points.reserve(pcl_cloud.size());
+    for(pcl::PointCloud<pcl::PointXYZ>::const_iterator it = pcl_cloud.begin(); it < pcl_cloud.end(); it++)
+    {
+        base::Point p;
+        p[0] = it->x;
+        p[1] = it->y;
+        p[2] = it->z;
+        mPointcloud.points.push_back(p);
+    }
+
+    // Set grid parameters
     pcl::PointXYZ mi, ma; 
-    pcl::getMinMax3D (cloud, mi, ma);
+    pcl::getMinMax3D (pcl_cloud, mi, ma);
 
     const double mls_res = _resolution;
     const double size_x = ma.x - mi.x;
@@ -71,7 +85,7 @@ bool MLSMapLoader::configureHook()
     std::cout << "Range(x): " << offset[0] << " - " << mapSize[0]+offset[0] << std::endl;
     std::cout << "Range(y): " << offset[1] << " - " << mapSize[1]+offset[1] << std::endl;
 
-    createMLS(cloud, gridSize, cellSize, offset);
+    createMLS(pcl_cloud, gridSize, cellSize, offset);
     mMapLoaded = true;
     return true; 
 }

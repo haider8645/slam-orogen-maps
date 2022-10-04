@@ -13,6 +13,7 @@ namespace maps
     friend class MLSMapLoaderBase;
     protected:
         bool mMapLoaded;
+        base::samples::Pointcloud mPointcloud;
 
     protected:
         virtual bool publishMap();

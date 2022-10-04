@@ -3,6 +3,7 @@ version "0.1"
 
 using_library 'maps'
 
+import_types_from "base"
 import_types_from "maps/grid/MLSConfig.hpp"
 
 # define opaques
@@ -83,6 +84,9 @@ end
 
 # Abstract map laoder for MLS maps.
 task_context "MLSMapLoader" do
+
+    output_port('cloud', '/base/samples/Pointcloud')
+    .doc("The point cloud that was loaded from file.")
 
     property('path', 'std/string')
     .doc("File location of the PLY to load.")
