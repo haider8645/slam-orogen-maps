@@ -81,7 +81,7 @@ bool MLSMapLoader::configureHook()
     std::cout << "Grid-Size: " << gridSize[0] << " * " << gridSize[1] << std::endl;
     std::cout << "Map-Size: " << mapSize[0] << " * " << mapSize[1] << std::endl;
     
-    const maps::grid::Vector3d offset(mi.x-1, mi.y-1, 0);
+    const maps::grid::Vector3d offset(mi.x-1.5*mls_res, mi.y-1.5*mls_res, 0);
     std::cout << "Range(x): " << offset[0] << " - " << mapSize[0]+offset[0] << std::endl;
     std::cout << "Range(y): " << offset[1] << " - " << mapSize[1]+offset[1] << std::endl;
 
