@@ -3,6 +3,7 @@
 using namespace maps;
 
 #include <pcl/io/ply_io.h>
+#include <pcl/io/pcd_io.h>
 #include <pcl/common/transforms.h>
 
 MLSMapLoader::MLSMapLoader(std::string const& name, TaskCore::TaskState initial_state)
@@ -50,8 +51,12 @@ bool MLSMapLoader::configureHook()
     pcl::PLYReader plyReader;
     if (plyReader.read(_path, pcl_cloud) < 0)
     {
-        std::cerr << "Loading PLY failed!" << std::endl;
-        return false;
+        pcl::PCDReader pcdReader;
+        if(pcdReader.read(_path, pcl_cloud) < 0)
+        {
+            std::cerr << "Loading Pointcloud failed!" << std::endl;
+            return false;
+        }
     }
 
     // Convert to base-type
