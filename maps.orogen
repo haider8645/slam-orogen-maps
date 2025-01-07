@@ -5,6 +5,7 @@ using_library 'maps'
 
 import_types_from "base"
 import_types_from "maps/grid/MLSConfig.hpp"
+import_types_from "traversability_generator3d/TravGenNode.hpp"
 
 # define opaques
 typekit do
@@ -60,6 +61,11 @@ typekit do
     opaque_autogen '/maps/grid/TraversabilityMap3d</maps/grid/TraversabilityNodeBase *>',
                     :includes => "maps/grid/TraversabilityMap3d.hpp",
                     :alias_name => '/maps/grid/TraversabilityBaseMap3d'
+
+    opaque_autogen '/maps/grid/TraversabilityMap3d</traversability_generator3d/TravGenNode *>',
+                    :includes => "maps/grid/TraversabilityMap3d.hpp",
+                    :includes => "traversability_generator3d/TravGenNode.hpp",
+                    :alias_name => '/traversability_generator3d/TravMap3d'
 end
 
 maps = ['/maps/grid/GridMap</char>',
@@ -75,7 +81,8 @@ maps = ['/maps/grid/GridMap</char>',
         '/maps/grid/OccupancyGridMap',
         '/maps/grid/TraversabilityGrid',
         '/maps/grid/TSDFVolumetricMap',
-        '/maps/grid/TraversabilityBaseMap3d']
+        '/maps/grid/TraversabilityBaseMap3d',
+        '/traversability_generator3d/TravMap3d']
 
 # type exports
 typekit do
