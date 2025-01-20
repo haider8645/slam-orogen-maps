@@ -9,5 +9,6 @@
 
     <depend package="slam/maps" />
     <depend package="tools/orogen_opaque_autogen" />
+    <depend package="planning/traversability_generator3d" />
 </package>
 
