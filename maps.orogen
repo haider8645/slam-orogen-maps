@@ -2,12 +2,12 @@ name "maps"
 version "0.1"
 
 using_library 'maps'
-using_library 'traversability_generator3d'
 
 import_types_from "base"
 import_types_from "maps/grid/MLSConfig.hpp"
-import_types_from "traversability_generator3d/SoilNode.hpp"
 import_types_from "traversability_generator3d/TravGenNode.hpp"
+import_types_from "traversability_generator3d/SoilNode.hpp"
+
 # define opaques
 typekit do
 
@@ -72,7 +72,6 @@ typekit do
                     :includes => "maps/grid/TraversabilityMap3d.hpp",
                     :includes => "traversability_generator3d/SoilNode.hpp",
                     :alias_name => '/traversability_generator3d/SoilMap3d'
-
 end
 
 maps = ['/maps/grid/GridMap</char>',
@@ -89,7 +88,9 @@ maps = ['/maps/grid/GridMap</char>',
         '/maps/grid/TraversabilityGrid',
         '/maps/grid/TSDFVolumetricMap',
         '/maps/grid/TraversabilityBaseMap3d',
+        '/traversability_generator3d/TravMap3d',
         '/traversability_generator3d/SoilMap3d']
+
 
 # type exports
 typekit do
